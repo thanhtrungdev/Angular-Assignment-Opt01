@@ -9,6 +9,11 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { DataTablesModule } from 'angular-datatables';
 
+import { HomeComponent } from './components/home/home.component';
+import { HeaderComponent } from './components/layouts/header/header.component';
+import { FooterComponent } from './components/layouts/footer/footer.component';
+import { DetailsComponent } from './components/details/details.component';
+
 import { ComputerListComponent } from './components/computers/computer-list/computer-list.component';
 import { ComputerFormsComponent } from './components/computers/computer-forms/computer-forms.component';
 import { ComputerCreateComponent } from './components/computers/computer-create/computer-create.component';
@@ -23,12 +28,9 @@ import { ServiceListComponent } from './components/services/service-list/service
 import { ServiceFormsComponent } from './components/services/service-forms/service-forms.component';
 import { ServiceCreateComponent } from './components/services/service-create/service-create.component';
 import { ServiceEditComponent } from './components/services/service-edit/service-edit.component';
+
 import { UseComputerComponent } from './components/reg-to-use/use-computer/use-computer.component';
 import { UseServiceComponent } from './components/reg-to-use/use-service/use-service.component';
-import { HomeComponent } from './components/home/home.component';
-import { DetailsComponent } from './components/details/details.component';
-import { HeaderComponent } from './components/layouts/header/header.component';
-import { FooterComponent } from './components/layouts/footer/footer.component';
 
 @NgModule({
   declarations: [

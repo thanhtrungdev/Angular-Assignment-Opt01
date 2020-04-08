@@ -44,3 +44,6 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+#package-lock.json (https://dn-repo.fsoft.com.vn/repository/npm/...)
+package-lock_dn-repo.fsoft.com.vn.json

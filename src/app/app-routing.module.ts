@@ -12,7 +12,7 @@ import { ServiceCreateComponent } from './components/services/service-create/ser
 import { ServiceEditComponent } from './components/services/service-edit/service-edit.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   {
     path: 'computers',

@@ -1,0 +1,16 @@
+[{
+        "id": 1,
+        "location": "May-1",
+        "status": "On"
+    },
+    {
+        "id": 2,
+        "location": "May-2",
+        "status": "Off"
+    },
+    {
+        "id": 3,
+        "location": "May-3",
+        "status": "Repair"
+    }
+]

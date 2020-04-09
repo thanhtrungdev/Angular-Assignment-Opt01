@@ -1,2 +1,1 @@
-export class Service.Model {
-}
+export class Service {}

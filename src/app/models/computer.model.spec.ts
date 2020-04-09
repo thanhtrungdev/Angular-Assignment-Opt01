@@ -1,7 +1,7 @@
-import { Computer.Model } from './computer.model';
+import { Computer } from './computer.model';
 
-describe('Computer.Model', () => {
+describe('Computer', () => {
   it('should create an instance', () => {
-    expect(new Computer.Model()).toBeTruthy();
+    expect(new Computer()).toBeTruthy();
   });
 });

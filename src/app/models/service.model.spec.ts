@@ -1,7 +1,7 @@
-import { Service.Model } from './service.model';
+import { Service } from './service.model';
 
-describe('Service.Model', () => {
+describe('Service', () => {
   it('should create an instance', () => {
-    expect(new Service.Model()).toBeTruthy();
+    expect(new Service()).toBeTruthy();
   });
 });

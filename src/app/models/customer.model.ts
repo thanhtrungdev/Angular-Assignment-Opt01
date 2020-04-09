@@ -1,2 +1,1 @@
-export class Customer.Model {
-}
+export class Customer {}

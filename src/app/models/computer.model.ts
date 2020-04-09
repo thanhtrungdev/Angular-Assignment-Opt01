@@ -1,2 +1,5 @@
-export class Computer.Model {
+export class Computer {
+  id: number;
+  location: string;
+  status: string;
 }

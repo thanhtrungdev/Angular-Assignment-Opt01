@@ -70,11 +70,15 @@ export class ComputerListComponent implements OnInit {
 
   onCreate() {
     this.createStatus = true;
-    this.myComputerForms.computerForms.reset();
+    //this.myComputerForms.computerForms.reset();
     this.myComputerForms.computerForms.get('computerId').enable();
-    this.myComputerForms.computerForms
-      .get('computerId')
-      .setValue(this.computers.length + 1);
+    //this.myComputerForms.computerForms.get('computerId').setValue(this.computers.length + 1);
+
+    this.myComputerForms.computerForms.patchValue({
+      computerId: this.computers.length + 1,
+      computerLocation: 'Máy ' + (this.computers.length + 1),
+      computerStatus: 'on',
+    });
   }
 
   onEdit(computer, id) {
@@ -86,6 +90,8 @@ export class ComputerListComponent implements OnInit {
       computerLocation: computer.location,
       computerStatus: computer.status,
     });
+
+    console.log(id + ': ' + computer.status);
   }
 
   submitComputer() {
@@ -105,7 +111,7 @@ export class ComputerListComponent implements OnInit {
       };
       //this.computerService.createComputer(com);
 
-      console.log(com);
+      //console.log(com);
     }
 
     if (this.editStatus === true && this.createStatus === false) {

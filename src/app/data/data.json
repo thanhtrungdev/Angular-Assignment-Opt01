@@ -2,17 +2,17 @@
   "computers": [
     {
       "id": 1,
-      "location": "May-1",
+      "location": "Máy 1",
       "status": "on"
     },
     {
       "id": 2,
-      "location": "May-2",
+      "location": "Máy 2",
       "status": "off"
     },
     {
       "id": 3,
-      "location": "May-3",
+      "location": "Máy 3",
       "status": "repair"
     }
   ],

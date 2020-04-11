@@ -14,7 +14,7 @@ export class ComputerCreateComponent implements OnInit {
 
   computer: Computer;
   formComputerCreate: FormGroup;
-  computerStatus = [
+  computerCreateStatus = [
     { val: 'on', name: 'Chưa sử dụng' },
     { val: 'off', name: 'Đang sử dụng' },
     { val: 'repair', name: 'Đang sửa chữa' },
@@ -31,41 +31,49 @@ export class ComputerCreateComponent implements OnInit {
 
   private initForm() {
     this.formComputerCreate = new FormGroup({
-      computerId: new FormControl(
+      computerCreateId: new FormControl(
         '',
         Validators.compose([
           Validators.required,
           Validators.pattern('^[0-9]*$'),
         ])
       ),
-      computerLocation: new FormControl('', Validators.required),
-      computerStatus: new FormControl(
-        this.computerStatus[0],
+      computerCreateLocation: new FormControl('', Validators.required),
+      computerCreateStatus: new FormControl(
+        this.computerCreateStatus[0],
         Validators.required
       ),
     });
   }
 
   onSubmit() {
-    // console.warn(this.formComputerCreate.value);
+    console.warn(this.formComputerCreate.value);
     // console.log(this.computerStatus[0]);
     //$('#modal').modal('toggle');
-    // this.btnCloseModal.nativeElement.click();
-    // this.router.navigate(['customers']);
+    this.btnCloseModal.nativeElement.click();
+
     const com = {
-      id: Number = this.formComputerCreate.value.computerId,
-      location: String = this.formComputerCreate.value.computerLocation,
-      status: String = this.formComputerCreate.value.computerStatus.val,
+      id: Number = this.formComputerCreate.value.computerCreateId,
+      location: String = this.formComputerCreate.value.computerCreateLocation,
+      status: String = this.formComputerCreate.value.computerCreateStatus.val,
     };
-    this.computerService.createComputer(com).subscribe(
-      (next) => {
-        //this.btnCloseModal.nativeElement.click();
-        this.router.navigate(['customers']);
-        //$('#tbl-computer').DataTable().ajax.reload();
-        //$('#tbl-computer').DataTable().clear().rows.add(getDataFromServer()).draw();
-        //this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => this.router.navigate(['computers']));
-      },
-      (error) => console.error(error)
-    );
+    this.computerService.createComputer(com);
+    this.router.navigate(['customers']);
+
+    // const com = {
+    //   id: Number = this.formComputerCreate.value.computerCreateId,
+    //   location: String = this.formComputerCreate.value.computerCreateLocation,
+    //   status: String = this.formComputerCreate.value.computerCreateStatus.val,
+    // };
+    // this.computerService.createComputer(com).subscribe(
+    //   (next) => {
+    //     //this.btnCloseModal.nativeElement.click();
+    //     this.router.navigate(['customers']);
+    //     //$('#tbl-computer').DataTable().ajax.reload();
+    //     //$('#tbl-computer').DataTable().clear().rows.add(getDataFromServer()).draw();
+    //     //this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => this.router.navigate(['computers']));
+    //   },
+    //   (error) => console.error(error)
+    // );
   }
 }

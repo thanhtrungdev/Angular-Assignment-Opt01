@@ -1,35 +1,36 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { HttpClient, HttpRequest, HttpResponse } from '@angular/common/http';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { DataTableDirective } from 'angular-datatables';
-import { Subject } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { Computer } from '../../../models/computer.model';
 import { ComputerService } from '../../../services/computer.service';
+import { ComputerFormsComponent } from '../computer-forms/computer-forms.component';
 
 @Component({
   selector: 'app-computer-list',
   templateUrl: './computer-list.component.html',
   styleUrls: ['./computer-list.component.css'],
 })
-export class ComputerListComponent implements OnInit, OnDestroy {
+export class ComputerListComponent implements OnInit {
+  @ViewChild(ComputerFormsComponent, { static: false })
+  myComputerForms: ComputerFormsComponent;
+
+  createStatus = false;
+  editStatus = false;
+
   datatableElement: DataTableDirective;
   dtOptions: DataTables.Settings = {};
   computers: Computer[] = [];
-  dtTrigger: Subject = new Subject();
 
   constructor(
     private http: HttpClient,
+    private router: Router,
     private computerService: ComputerService
   ) {}
 
   ngOnInit(): void {
     this.dtTable();
     this.getAllComputer();
-  }
-
-  ngOnDestroy(): void {
-    // Do not forget to unsubscribe the event
-    this.dtTrigger.unsubscribe();
   }
 
   getAllComputer() {
@@ -44,21 +45,21 @@ export class ComputerListComponent implements OnInit, OnDestroy {
       responsive: true,
       pagingType: 'full_numbers',
       //pageLength: 15,
-      dom: 'lBfrtip',
-      buttons: [
-        {
-          text: 'Tạo máy',
-          attr: {
-            id: 'btn-computer-create',
-            class: 'btn btn-primary',
-          },
-          action: () => {
-            $('#btn-computer-create')
-              .attr('data-toggle', 'modal')
-              .attr('data-target', '#computerCreate');
-          },
-        },
-      ],
+      // dom: 'lBfrtip',
+      // buttons: [
+      //   {
+      //     text: 'Tạo máy',
+      //     attr: {
+      //       id: 'btn-computer-create',
+      //       class: 'btn btn-primary',
+      //     },
+      //     action: () => {
+      //       $('#btn-computer-create')
+      //         .attr('data-toggle', 'modal')
+      //         .attr('data-target', '#computerCreate');
+      //     },
+      //   },
+      // ],
     };
 
     /* this.computerService.getAllComputer().subscribe(
@@ -67,9 +68,64 @@ export class ComputerListComponent implements OnInit, OnDestroy {
     ); */
   }
 
+  onCreate() {
+    this.createStatus = true;
+    this.myComputerForms.computerForms.reset();
+    this.myComputerForms.computerForms.get('computerId').enable();
+    this.myComputerForms.computerForms
+      .get('computerId')
+      .setValue(this.computers.length + 1);
+  }
+
+  onEdit(computer, id) {
+    this.editStatus = true;
+    this.myComputerForms.computerForms.get('computerId').disable();
+
+    this.myComputerForms.computerForms.patchValue({
+      computerId: id,
+      computerLocation: computer.location,
+      computerStatus: computer.status,
+    });
+  }
+
+  submitComputer() {
+    if (this.createStatus === true && this.editStatus === false) {
+      this.createStatus = false;
+
+      console.log('create');
+      console.log(this.createStatus);
+      console.log(this.editStatus);
+
+      const com = {
+        id: Number = this.myComputerForms.computerForms.value.computerId,
+        location: String = this.myComputerForms.computerForms.value
+          .computerLocation,
+        status: String = this.myComputerForms.computerForms.value.computerStatus
+          .val,
+      };
+      //this.computerService.createComputer(com);
+
+      console.log(com);
+    }
+
+    if (this.editStatus === true && this.createStatus === false) {
+      this.editStatus = false;
+
+      console.log('edit');
+      console.log(this.createStatus);
+      console.log(this.editStatus);
+    }
+  }
+
+  /* onSubmit(computerForms) {}
+
+  onReset() {
+    this.myComputerForms.computerForms.reset();
+  } */
+
   indexColumn() {
-    //var t = $('#tbl-computer').DataTable();
-    /* t.on('order.dt search.dt', () => {
+    /* var t = $('#tbl-computer').DataTable();
+    t.on('order.dt search.dt', () => {
       t.column(0, { search: 'applied', order: 'applied' })
         .nodes()
         .each((cell, i) => {

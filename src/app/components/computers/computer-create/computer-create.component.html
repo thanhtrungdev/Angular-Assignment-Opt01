@@ -1,47 +1,46 @@
-<div class="modal fade" id="computerCreate" tabindex="-1" role="dialog" aria-labelledby="computerCreateTitle"
-  aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="computerCreateLongTitle">Tạo mới máy</h5>
-        <button type="button" #btnCloseModal class="close" data-dismiss="modal" aria-label="Close">
+<div class="modal fade" id="computerCreate" tabindex="-1" role="dialog" aria-labelledby="computerCreateTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="computerCreateLongTitle">Tạo mới máy</h5>
+                <button type="button" #btnCloseModal class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-      </div>
+            </div>
 
-      <form [formGroup]="formComputerCreate" (ngSubmit)="onSubmit()">
-        <div class="modal-body">
-          <div class="container-fluid">
-            <div class="form-group">
-              <label for="computer_id" class="col-form-label">Mã máy: </label>
-              <small id="error-computer_id" class="text-danger"></small>
-              <input type="text" class="form-control" id="computer_id" formControlName="computerId" />
-            </div>
-            <div class="form-group">
-              <label for="computer_location" class="col-form-label">Vị trí:</label>
-              <small id="error-computer_location" class="text-danger"></small>
-              <input type="text" class="form-control" id="computer_location" formControlName="computerLocation" />
-            </div>
-            <div class="form-group">
-              <label for="computer_status" class="col-form-label">Trạng thái:</label>
-              <small id="error-computer_status" class="text-danger"></small>
-              <select class="form-control" id="computer_status" formControlName="computerStatus">
-                <option *ngFor="let status of computerStatus" [ngValue]="status">
+            <form [formGroup]="formComputerCreate" (ngSubmit)="onSubmit()">
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="form-group">
+                            <label for="computer_create_id" class="col-form-label">Mã máy: </label>
+                            <small id="error-computer_create_id" class="text-danger"></small>
+                            <input type="text" class="form-control" id="computer_create_id" formControlName="computerCreateId" />
+                        </div>
+                        <div class="form-group">
+                            <label for="computer_create_location" class="col-form-label">Vị trí:</label>
+                            <small id="error-computer_create_location" class="text-danger"></small>
+                            <input type="text" class="form-control" id="computer_create_location" formControlName="computerCreateLocation" />
+                        </div>
+                        <div class="form-group">
+                            <label for="computer_create_status" class="col-form-label">Trạng thái:</label>
+                            <small id="error-computer_create_status" class="text-danger"></small>
+                            <select class="form-control" id="computer_create_status" formControlName="computerCreateStatus">
+                <option *ngFor="let status of computerCreateStatus" [ngValue]="status">
                   {{ status.name }}
                 </option>
               </select>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
             Đóng
           </button>
-          <button type="submit" class="btn btn-primary" [disabled]="!formComputerCreate.valid">
+                    <button type="submit" class="btn btn-primary" [disabled]="!formComputerCreate.valid">
             Tạo mới
           </button>
+                </div>
+            </form>
         </div>
-      </form>
     </div>
-  </div>
 </div>

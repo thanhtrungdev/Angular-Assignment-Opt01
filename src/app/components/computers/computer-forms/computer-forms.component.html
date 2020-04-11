@@ -1,1 +1,54 @@
-<p>computer-forms works!</p>
+<div class="modal fade" id="computerModal" tabindex="-1" role="dialog" aria-labelledby="computerTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="computerLongTitle">Tạo mới máy</h5>
+                <button type="button" #btnCloseModal class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+
+            <!-- <form [formGroup]="computerForms" (ngSubmit)="onSubmit(id.value, location.value, status.value)"> -->
+            <form [formGroup]="computerForms">
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="form-group">
+                            <label for="computer_id" class="col-form-label">Mã máy: </label>
+                            <small id="error-computer_id" class="text-danger" *ngIf="(field.computerId.dirty || field.computerId.touched) && field.computerId.invalid">
+                <span *ngIf="field.computerId.errors.required"> Không được trống.</span>
+                <span *ngIf="field.computerId.errors.pattern"> Chỉ nhập số.</span>
+              </small>
+                            <input type="text" class="form-control" id="computer_id" formControlName="computerId" #id />
+                        </div>
+                        <div class="form-group">
+                            <label for="computer_location" class="col-form-label">Vị trí:</label>
+                            <small id="error-computer_id" class="text-danger" *ngIf="(field.computerLocation.dirty || field.computerLocation.touched) &&
+                              field.computerLocation.invalid">
+                <span *ngIf="field.computerLocation.errors.required"> Không được trống.</span>
+              </small>
+                            <input type="text" class="form-control" id="computer_location" formControlName="computerLocation" #location />
+                        </div>
+                        <div class="form-group">
+                            <label for="computer_status" class="col-form-label">Trạng thái:</label>
+                            <small id="error-computer_id" class="text-danger" *ngIf="(field.computerStatus.dirty || field.computerStatus.touched) &&
+                              field.computerStatus.invalid">
+                <span *ngIf="field.computerStatus.errors.required"> Không được trống.</span>
+              </small>
+                            <select class="form-control" id="computer_status" formControlName="computerStatus" #status>
+                <option *ngFor="let status of computerStatus" [ngValue]="status">
+                  {{ status.name }}
+                </option>
+              </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <!-- <button type="reset" class="btn btn-secondary" (click)="onReset()">Reset</button> -->
+                    <!-- <button type="submit" class="btn btn-primary" [disabled]="!computerForms.valid">Save</button> -->
+                    <button type="submit" class="btn btn-primary" (click)="submit(id.value, location.value, status.value)">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

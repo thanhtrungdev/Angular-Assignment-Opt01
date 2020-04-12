@@ -95,7 +95,7 @@ export class ComputerListComponent implements OnInit {
     });
   }
 
-  submitComputer() {
+  submitComputer($event) {
     /* Tạo máy mới */
     if (this.createStatus === true && this.editStatus === false) {
       this.createStatus = false;
@@ -104,14 +104,16 @@ export class ComputerListComponent implements OnInit {
       console.log('Create' + this.createStatus + ' & Edit:' + this.editStatus);
 
       const comp = this.myComputerForms.computerForms.value;
-      /* this.computerService.createComputer(comp).subscribe(
+      const submitCom = $event;
+      this.computerService.createComputer(submitCom).subscribe(
         (next) => {
           this.router.navigate(['customers']);
         },
         (error) => console.error(error)
-      ); */
+      );
 
       console.log(comp);
+      console.log(JSON.stringify(submitCom));
       //console.log(this.myComputerForms.computerForms.value.computerStatus);
     }
 

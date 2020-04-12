@@ -24,8 +24,8 @@ export class ComputerFormsComponent implements OnInit {
   computer: Computer;
   computerForms: FormGroup;
   computerStatus = [
-    { val: 'on', name: 'Đang sử dụng' },
     { val: 'off', name: 'Chưa sử dụng' },
+    { val: 'on', name: 'Đang sử dụng' },
     { val: 'repair', name: 'Đang sửa chữa' },
   ];
   constructor(private router: Router) {}
@@ -68,14 +68,16 @@ export class ComputerFormsComponent implements OnInit {
     this.computerForms.reset();
   }
 
-  onSubmit() {
-    this.computerSubmit.emit();
+  onSubmit(id, location, status) {
+    this.computerSubmit.emit({
+      id,
+      location,
+      status,
+    });
+    //this.computerSubmit.emit();
     this.btnCloseModal.nativeElement.click();
-  }
-
-  submit(a, b, c) {
-    console.log(a);
-    console.log(b);
-    console.log(c);
+    // console.log(id);
+    // console.log(location);
+    // console.log(JSON.stringify(status));
   }
 }

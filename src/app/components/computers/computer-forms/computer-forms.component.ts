@@ -56,7 +56,8 @@ export class ComputerFormsComponent implements OnInit {
   }
 
   get field() {
-    return this.computerForms.controls; //<span *ngIf="field.computerId.errors.required"> Không được trống.</span>
+    return this.computerForms.controls;
+    // <span *ngIf="field.computerId.errors.required"> Không được trống.</span>
   }
 
   /* get computerId() {

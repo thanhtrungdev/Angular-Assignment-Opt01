@@ -70,56 +70,57 @@ export class ComputerListComponent implements OnInit {
 
   onCreate() {
     this.createStatus = true;
-    //this.myComputerForms.computerForms.reset();
+    this.myComputerForms.modalTitle = 'Tạo máy mới';
     this.myComputerForms.computerForms.get('computerId').enable();
     //this.myComputerForms.computerForms.get('computerId').setValue(this.computers.length + 1);
 
     this.myComputerForms.computerForms.patchValue({
       computerId: this.computers.length + 1,
       computerLocation: 'Máy ' + (this.computers.length + 1),
-      computerStatus: 'on',
+      computerStatus: 'off',
     });
   }
 
-  onEdit(computer, id) {
+  //onEdit(computer, id) { //console.log(id + ": " + computer.status);}
+  onEdit(computer) {
     this.editStatus = true;
+
+    this.myComputerForms.modalTitle = 'Chỉnh sửa máy ' + computer.id;
     this.myComputerForms.computerForms.get('computerId').disable();
 
     this.myComputerForms.computerForms.patchValue({
-      computerId: id,
+      computerId: computer.id,
       computerLocation: computer.location,
       computerStatus: computer.status,
     });
-
-    console.log(id + ': ' + computer.status);
   }
 
   submitComputer() {
+    /* Tạo máy mới */
     if (this.createStatus === true && this.editStatus === false) {
       this.createStatus = false;
 
-      console.log('create');
-      console.log(this.createStatus);
-      console.log(this.editStatus);
+      console.log('Create');
+      console.log('Create' + this.createStatus + ' & Edit:' + this.editStatus);
 
-      const com = {
-        id: Number = this.myComputerForms.computerForms.value.computerId,
-        location: String = this.myComputerForms.computerForms.value
-          .computerLocation,
-        status: String = this.myComputerForms.computerForms.value.computerStatus
-          .val,
-      };
-      //this.computerService.createComputer(com);
+      const comp = this.myComputerForms.computerForms.value;
+      /* this.computerService.createComputer(comp).subscribe(
+        (next) => {
+          this.router.navigate(['customers']);
+        },
+        (error) => console.error(error)
+      ); */
 
-      //console.log(com);
+      console.log(comp);
+      //console.log(this.myComputerForms.computerForms.value.computerStatus);
     }
 
+    /* Chỉnh sửa máy */
     if (this.editStatus === true && this.createStatus === false) {
       this.editStatus = false;
 
-      console.log('edit');
-      console.log(this.createStatus);
-      console.log(this.editStatus);
+      console.log('Edit');
+      console.log('Create' + this.createStatus + ' & Edit:' + this.editStatus);
     }
   }
 

@@ -19,11 +19,13 @@ export class ComputerFormsComponent implements OnInit {
   @ViewChild('btnCloseModal') btnCloseModal;
   @Output() computerSubmit = new EventEmitter();
 
+  modalTitle = '';
+
   computer: Computer;
   computerForms: FormGroup;
   computerStatus = [
-    { val: 'on', name: 'Chưa sử dụng' },
-    { val: 'off', name: 'Đang sử dụng' },
+    { val: 'on', name: 'Đang sử dụng' },
+    { val: 'off', name: 'Chưa sử dụng' },
     { val: 'repair', name: 'Đang sửa chữa' },
   ];
   constructor(private router: Router) {}

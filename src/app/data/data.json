@@ -19,18 +19,77 @@
   "customers": [
     {
       "id": 1,
-      "location": "May-1",
-      "status": "on"
+      "name": "David",
+      "address": "New York",
+      "phone": "125456",
+      "email": "david@email.com"
     },
     {
       "id": 2,
-      "location": "May-2",
-      "status": "off"
+      "name": "Andrew",
+      "address": "Paris",
+      "phone": "145236",
+      "email": "andrew@email.com"
     },
     {
       "id": 3,
-      "location": "May-3",
-      "status": "repair"
+      "name": "John",
+      "address": "London",
+      "phone": "142356",
+      "email": "john@email.com"
+    }
+  ],
+  "services": [
+    {
+      "id": 1,
+      "name": "Red-bul",
+      "unit": "Lon",
+      "price": "12000"
+    },
+    {
+      "id": 2,
+      "name": "Hảo Hảo",
+      "unit": "Gói",
+      "price": "5000"
+    }
+  ],
+  "use-services": [
+    {
+      "customerId": 1,
+      "serviceId": 1,
+      "date": "2020-04-12",
+      "time": "10:15",
+      "quantity": "1"
+    },
+    {
+      "customerId": 1,
+      "serviceId": 2,
+      "date": "2020-04-12",
+      "time": "10:15",
+      "quantity": "1"
+    },
+    {
+      "customerId": 2,
+      "serviceId": 1,
+      "date": "2020-04-12",
+      "time": "23:15",
+      "quantity": "1"
+    }
+  ],
+  "use-computers": [
+    {
+      "customerId": 1,
+      "computerId": 1,
+      "startDate": "2020-04-12",
+      "StartTime": "10:00",
+      "totalTime": "90"
+    },
+    {
+      "customerId": 2,
+      "computerId": 1,
+      "startDate": "2020-04-12",
+      "StartTime": "23:15",
+      "totalTime": "45"
     }
   ]
 }
